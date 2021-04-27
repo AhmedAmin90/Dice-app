@@ -1,0 +1,15 @@
+.Rolldice {
+    display: flex;
+    flex-direction: column;
+}
+
+.Rolldice-btn {
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+    background-color:#7B6CD3;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    align-self: center;
+}
