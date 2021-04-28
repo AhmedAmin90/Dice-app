@@ -5,7 +5,8 @@ import './Rolldice.css'
 class Rolldice extends Component {
     state = {
         diceOne: 'one',
-        diceTwo: 'one'
+        diceTwo: 'one',
+        rolling: false,
     }
 
     changeNumber = (e) => {
@@ -21,21 +22,22 @@ class Rolldice extends Component {
             }
         }
         
-        this.setState({diceOne: randomNumberOne , diceTwo: randomNumberTwo})
+        this.setState({diceOne: randomNumberOne , diceTwo: randomNumberTwo , rolling:true});
+        setTimeout(()=> {
+            this.setState({rolling: false})
+        },1000)
     }
-
-    // static defaultProps = {
-    //     face: ['one' , 'two' , 'three' , 'four' , 'five' , 'six']
-    // }
 
     render() {
         return (
             <div className="Rolldice">
                 <div> 
-                    <Die face={this.state.diceOne}/>
-                    <Die face={this.state.diceTwo}/>
+                    <Die face={this.state.diceOne} rolling={this.state.rolling}/>
+                    <Die face={this.state.diceTwo} rolling={this.state.rolling}/>
                 </div>
-                <button onClick={this.changeNumber} className="Rolldice-btn">Roll Dice</button>
+                <button onClick={this.changeNumber} className="Rolldice-btn" disabled={this.state.rolling}>
+                    {this.state.rolling ? 'Rolling ...' : "RollDice "}
+                </button>
             </div>
             
         )
